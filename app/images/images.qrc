@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>agl_title_793x211.png</file>
+        <file>Utility_Logo_Grey-01.svg</file>
+        <file>fuel-icon.png</file>
+        <file>temperature-icon.png</file>
+    </qresource>
+</RCC>
