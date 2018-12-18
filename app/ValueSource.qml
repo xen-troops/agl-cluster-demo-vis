@@ -53,6 +53,8 @@ import QtQuick 2.2
 Item {
     id: valueSource
     property real kph: 0
+    property bool mphDisplay: true
+    property real speedScaling: mphDisplay == true ? 0.621 : 1.0
     property real rpm: 1
     property real fuel: 0.85
     property string gear: {
@@ -80,9 +82,11 @@ Item {
         }
         return "P";
     }
-    property int turnSignal: prindle == "P" && !start ? randomDirection() : -1
-    property real temperature: 0.6
+
     property bool start: true
+    property int turnSignal: -1
+    property bool startUp: false
+    property real temperature: 0.6
 
     function randomDirection() {
         return Math.random() > 0.5 ? Qt.LeftArrow : Qt.RightArrow;
@@ -105,6 +109,22 @@ Item {
 
         SequentialAnimation {
             loops: Animation.Infinite
+
+            // Simulate startup with indicators blink
+            PropertyAction {
+                target: valueSource
+                property: "startUp"
+                value: true
+            }
+            PauseAnimation {
+                duration: 1000
+            }
+            PropertyAction {
+                target: valueSource
+                property: "startUp"
+                value: false
+            }
+
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource
@@ -244,6 +264,13 @@ Item {
                 }
             }
 
+            // Turn signal on
+            PropertyAction {
+                target: valueSource
+                property: "turnSignal"
+                value: randomDirection()
+            }
+
             // Cruise for a while
             ParallelAnimation {
                 NumberAnimation {
@@ -261,6 +288,14 @@ Item {
                     duration: 10000
                 }
             }
+
+            // Turn signal off
+            PropertyAction {
+                target: valueSource
+                property: "turnSignal"
+                value: -1
+            }
+
             ParallelAnimation {
                 NumberAnimation {
                     target: valueSource

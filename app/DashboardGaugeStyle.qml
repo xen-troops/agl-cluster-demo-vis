@@ -131,7 +131,8 @@ CircularGaugeStyle {
             readonly property int kphInt: control.value
         }
         Text {
-            text: "km/h"
+            id: speedLabel
+            text: valueSource.mphDisplay ? "MPH" : "km/h"
             color: "white"
             font.pixelSize: toPixels(0.09)
             anchors.top: speedText.bottom

@@ -81,7 +81,7 @@ ApplicationWindow {
         id: statusFrame
         x: (parent.width - width) / 2
         y: 80
-        width: 960
+        width: 1152
         height: 96
         radius: height / 5
 
@@ -92,13 +92,13 @@ ApplicationWindow {
         Row {
             width: parent.width
             height: parent.height * 0.75
-            spacing: (parent.width - (10 * parent.height * 0.75)) / 11
+            spacing: (parent.width - (12 * parent.height * 0.75)) / 13
 
             anchors.fill: parent
             anchors.topMargin: (parent.height - height) /2
             anchors.bottomMargin: (parent.height - height) /2
-            anchors.leftMargin: (parent.width - (10 * parent.height * 0.75)) / 11
-            anchors.rightMargin: (parent.width - (10 * parent.height * 0.75)) / 11
+            anchors.leftMargin: (parent.width - (12 * parent.height * 0.75)) / 13
+            anchors.rightMargin: (parent.width - (12 * parent.height * 0.75)) / 13
 
             Rectangle {
                 width: height
@@ -129,6 +129,15 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_Engine_yellow.svg' : './images/AGL_Icons_Engine.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -139,6 +148,15 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_Oil_red.svg' : './images/AGL_Icons_Oil.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -149,6 +167,34 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_ABS_red.svg' : './images/AGL_Icons_ABS.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            Rectangle {
+                width: height
+                height: parent.height
+                radius: height / 5
+
+                color: "black"
+                border.width: 2
+                border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_Battery_red.svg' : './images/AGL_Icons_Battery.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -202,6 +248,15 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_Seatbelt_red.svg' : './images/AGL_Icons_Seatbelt.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -212,6 +267,15 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_OpenDoor_red.svg' : './images/AGL_Icons_OpenDoor.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -222,6 +286,34 @@ ApplicationWindow {
                 color: "black"
                 border.width: 2
                 border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_Lights_red.svg' : './images/AGL_Icons_Lights.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
+            Rectangle {
+                width: height
+                height: parent.height
+                radius: height / 5
+
+                color: "black"
+                border.width: 2
+                border.color: "grey"
+
+                Image {
+                    source: valueSource.startUp ? './images/AGL_Icons_ParkingBrake_red.svg' : './images/AGL_Icons_ParkingBrake.svg'
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: height
+                    height: parent.height * 0.75
+                    fillMode: Image.PreserveAspectFit
+                }
             }
 
             Rectangle {
@@ -260,8 +352,8 @@ ApplicationWindow {
             width: parent.width * 0.9
             height: width
 
-            maximumValue: 220
-            value: valueSource.kph
+            maximumValue: valueSource.mphDisplay ? 140 : 220
+            value: valueSource.kph * valueSource.speedScaling
 
             style: DashboardGaugeStyle {}
         }
