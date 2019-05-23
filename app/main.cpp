@@ -29,6 +29,8 @@
 #include <qlibwindowmanager.h>
 #endif
 
+#include "visclient.h"
+
 int main(int argc, char *argv[])
 {
     // Slight hack, using the homescreen role greatly simplifies things wrt
@@ -36,6 +38,8 @@ int main(int argc, char *argv[])
     QString myname = QString("homescreen");
 
     QGuiApplication app(argc, argv);
+
+    VisClient visClient;
 
 #ifndef HOST_BUILD
 
@@ -92,6 +96,10 @@ int main(int argc, char *argv[])
     }
 #else
     QQmlApplicationEngine engine;
+    QQmlContext *context = engine.rootContext();
+
+    context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
+    context->setContextProperty("visClient", &visClient);
 
     engine.load(QUrl(QStringLiteral("qrc:/cluster-gauges.qml")));
 #endif

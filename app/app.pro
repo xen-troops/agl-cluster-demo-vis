@@ -1,11 +1,12 @@
 TARGET = cluster-gauges
-QT = quick
+QT = quickcontrols2 websockets
 
 DEFINES = HOST_BUILD
 
-HEADERS =
+HEADERS = visclient.h
 
-SOURCES = main.cpp
+SOURCES = main.cpp \
+    visclient.cpp
 
 RESOURCES += \
     cluster-gauges.qrc \
