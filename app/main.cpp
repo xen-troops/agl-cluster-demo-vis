@@ -103,6 +103,7 @@ int main(int argc, char *argv[])
     context->setContextProperty("visClient", &visClient);
 
     engine.load(QUrl(QStringLiteral("qrc:/cluster-gauges.qml")));
+    // engine.load(QUrl(QStringLiteral("app/cluster-gauges.qml")));
 #endif
 
     return app.exec();
