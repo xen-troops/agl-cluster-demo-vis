@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-#include <QtCore/QDebug>
+#include <QQuickWindow>
 #include <QtCore/QCommandLineParser>
+#include <QtCore/QDebug>
 #include <QtCore/QUrlQuery>
 #include <QtGui/QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 #include <QtQml/qqml.h>
-#include <QQuickWindow>
 #include <QtQuickControls2/QQuickStyle>
 
 #ifndef HOST_BUILD
@@ -68,10 +68,10 @@ int main(int argc, char *argv[])
         context->setContextProperty(QStringLiteral("bindingAddress"), bindingAddress);
 
         std::string token = secret.toStdString();
-        QLibWindowmanager* qwm = new QLibWindowmanager();
+        QLibWindowmanager *qwm = new QLibWindowmanager();
 
         // WindowManager
-        if(qwm->init(port, secret) != 0){
+        if (qwm->init(port, secret) != 0) {
             exit(EXIT_FAILURE);
         }
 
@@ -80,8 +80,9 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
         }
 
-        // Create an event callback against an event type. Here a lambda is called when SyncDraw event occurs
-        qwm->set_event_handler(QLibWindowmanager::Event_SyncDraw, [qwm, myname](json_object*) {
+        // Create an event callback against an event type. Here a lambda is called when SyncDraw
+        // event occurs
+        qwm->set_event_handler(QLibWindowmanager::Event_SyncDraw, [qwm, myname](json_object *) {
             fprintf(stderr, "Surface got syncDraw!\n");
             qwm->endDraw(myname);
         });

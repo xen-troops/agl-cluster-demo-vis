@@ -8,11 +8,12 @@ const unsigned long visClientTimeout = 1000;
  * VisClient
  ******************************************************************************/
 
-VisClient::VisClient(QObject* parent) : QObject(parent)
+VisClient::VisClient(QObject *parent) : QObject(parent)
 {
     qDebug() << "Create VIS client";
 
-    connect(&mWebSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error), this, &VisClient::onError);
+    connect(&mWebSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error), this,
+            &VisClient::onError);
     connect(&mWebSocket, &QWebSocket::sslErrors, this, &VisClient::onSslErrors);
     connect(&mWebSocket, &QWebSocket::connected, this, &VisClient::onConnected);
     connect(&mWebSocket, &QWebSocket::disconnected, this, &VisClient::onDisconnected);
@@ -30,7 +31,7 @@ VisClient::~VisClient()
  * Public
  ******************************************************************************/
 
-void VisClient::connectTo(const QString& address)
+void VisClient::connectTo(const QString &address)
 {
     qDebug() << "Connect to:" << address;
 
@@ -44,7 +45,7 @@ void VisClient::disconnect()
     mWebSocket.close();
 }
 
-void VisClient::sendMessage(const QString& message)
+void VisClient::sendMessage(const QString &message)
 {
     qDebug() << "Send message:" << message;
 
@@ -65,13 +66,11 @@ void VisClient::onDisconnected()
     Q_EMIT VisClient::disconnected();
 }
 
-void VisClient::onSslErrors(const QList<QSslError>& errors)
+void VisClient::onSslErrors(const QList<QSslError> &errors)
 {
-    Q_FOREACH (QSslError error, errors)
-    {
+    Q_FOREACH (QSslError error, errors) {
         if (error.error() == QSslError::SelfSignedCertificate
-            || error.error() == QSslError::SelfSignedCertificateInChain)
-        {
+            || error.error() == QSslError::SelfSignedCertificateInChain) {
             mWebSocket.ignoreSslErrors();
             return;
         }
@@ -87,7 +86,7 @@ void VisClient::onError(QAbstractSocket::SocketError error)
     Q_EMIT VisClient::error(mWebSocket.errorString());
 }
 
-void VisClient::onTextMessageReceived(const QString& message)
+void VisClient::onTextMessageReceived(const QString &message)
 {
     qDebug() << "Receive message:" << message;
 
