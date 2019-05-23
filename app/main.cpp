@@ -25,7 +25,9 @@
 #include <QQuickWindow>
 #include <QtQuickControls2/QQuickStyle>
 
+#ifndef HOST_BUILD
 #include <qlibwindowmanager.h>
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -34,6 +36,8 @@ int main(int argc, char *argv[])
     QString myname = QString("homescreen");
 
     QGuiApplication app(argc, argv);
+
+#ifndef HOST_BUILD
 
     QCommandLineParser parser;
     parser.addPositionalArgument("port", app.translate("main", "port for binding"));
@@ -86,6 +90,11 @@ int main(int argc, char *argv[])
         QQuickWindow *window = qobject_cast<QQuickWindow *>(mobjs.first());
         QObject::connect(window, SIGNAL(frameSwapped()), qwm, SLOT(slotActivateSurface()));
     }
+#else
+    QQmlApplicationEngine engine;
+
+    engine.load(QUrl(QStringLiteral("qrc:/cluster-gauges.qml")));
+#endif
 
     return app.exec();
 }
