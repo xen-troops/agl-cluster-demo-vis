@@ -48,5 +48,6 @@ set_target_properties(${TARGET_NAME} PROPERTIES
 target_link_libraries(${TARGET_NAME}
 	Qt5::QuickControls2
 	Qt5::QuickWidgets
+	Qt5::WebSockets
 	${QLIBWINMGR_LIBRARIES}
 )
