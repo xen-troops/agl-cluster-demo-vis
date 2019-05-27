@@ -1,4 +1,4 @@
-#include "visclient.h"
+#include "visclient.hpp"
 
 QT_USE_NAMESPACE
 

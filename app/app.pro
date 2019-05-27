@@ -3,7 +3,7 @@ QT = quickcontrols2 websockets
 
 DEFINES = HOST_BUILD
 
-HEADERS = visclient.h
+HEADERS = visclient.hpp
 
 SOURCES = main.cpp \
     visclient.cpp

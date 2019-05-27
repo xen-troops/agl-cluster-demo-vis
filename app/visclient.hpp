@@ -1,5 +1,5 @@
-#ifndef VISCLIENT_H
-#define VISCLIENT_H
+#ifndef VISCLIENT_HPP
+#define VISCLIENT_HPP
 
 #include <QtCore/QObject>
 #include <QtWebSockets/QWebSocket>

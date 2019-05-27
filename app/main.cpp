@@ -29,7 +29,7 @@
 #include <qlibwindowmanager.h>
 #endif
 
-#include "visclient.h"
+#include "visclient.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -66,6 +66,8 @@ int main(int argc, char *argv[])
         bindingAddress.setQuery(query);
         QQmlContext *context = engine.rootContext();
         context->setContextProperty(QStringLiteral("bindingAddress"), bindingAddress);
+        context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
+        context->setContextProperty("visClient", &visClient);
 
         std::string token = secret.toStdString();
         QLibWindowmanager *qwm = new QLibWindowmanager();
