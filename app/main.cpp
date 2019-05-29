@@ -29,7 +29,7 @@
 #include <qlibwindowmanager.h>
 #endif
 
-#include "visclient.hpp"
+#include "VisClient.hpp"
 
 int main(int argc, char *argv[])
 {

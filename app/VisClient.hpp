@@ -1,5 +1,5 @@
-#ifndef VISCLIENT_HPP
-#define VISCLIENT_HPP
+#ifndef VIS_CLIENT_HPP
+#define VIS_CLIENT_HPP
 
 #include <QtCore/QObject>
 #include <QtWebSockets/QWebSocket>
@@ -33,4 +33,4 @@ private:
     QWebSocket mWebSocket;
 };
 
-#endif // VISCLIENT_H
+#endif // VIS_CLIENT_HPP

@@ -29,8 +29,8 @@ PROJECT_TARGET_ADD(cluster-gauges)
 
 add_executable(${TARGET_NAME}
 	main.cpp
-	visclient.cpp
-	visclient.hpp
+	VisClient.cpp
+	VisClient.hpp
 	${RESOURCES}
 )
 

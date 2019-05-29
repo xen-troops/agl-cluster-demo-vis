@@ -3,10 +3,10 @@ QT = quickcontrols2 websockets
 
 DEFINES = HOST_BUILD
 
-HEADERS = visclient.hpp
+HEADERS = VisClient.hpp
 
 SOURCES = main.cpp \
-    visclient.cpp
+    VisClient.cpp
 
 RESOURCES += \
     cluster-gauges.qrc \
