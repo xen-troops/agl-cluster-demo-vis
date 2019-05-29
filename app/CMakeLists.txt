@@ -20,7 +20,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(Qt5 COMPONENTS Core Gui QuickControls2 WebSockets QuickWidgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui QuickControls2 WebSockets QuickWidgets DBus REQUIRED)
 find_package(PkgConfig REQUIRED)
 
 qt5_add_resources(RESOURCES cluster-gauges.qrc images/images.qrc)
@@ -31,6 +31,7 @@ add_executable(${TARGET_NAME}
 	main.cpp
 	VisClient.cpp
 	VisClient.hpp
+	DisplayManagerClient.hpp
 	${RESOURCES}
 )
 
@@ -49,5 +50,6 @@ target_link_libraries(${TARGET_NAME}
 	Qt5::QuickControls2
 	Qt5::QuickWidgets
 	Qt5::WebSockets
+	Qt5::DBus
 	${QLIBWINMGR_LIBRARIES}
 )

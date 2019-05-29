@@ -29,6 +29,7 @@
 #include <qlibwindowmanager.h>
 #endif
 
+#include "DisplayManagerClient.hpp"
 #include "VisClient.hpp"
 
 int main(int argc, char *argv[])
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    DisplayManagerClient displayManagerClient;
     VisClient visClient;
 
 #ifndef HOST_BUILD
@@ -66,6 +68,7 @@ int main(int argc, char *argv[])
         bindingAddress.setQuery(query);
         QQmlContext *context = engine.rootContext();
         context->setContextProperty(QStringLiteral("bindingAddress"), bindingAddress);
+        context->setContextProperty("displayManagerClient", &displayManagerClient);
         context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
         context->setContextProperty("visClient", &visClient);
 
@@ -89,6 +92,12 @@ int main(int argc, char *argv[])
             qwm->endDraw(myname);
         });
 
+        qwm->set_event_handler(QLibWindowmanager::Event_ScreenUpdated,
+                               [qwm, myname, &displayManagerClient](json_object *) {
+                                   fprintf(stderr, "Surface got screen updated!\n");
+                                   displayManagerClient.userEvent(0);
+                               });
+
         engine.load(QUrl(QStringLiteral("qrc:/cluster-gauges.qml")));
 
         // Find the instantiated model QObject and connect the signals/slots
@@ -101,6 +110,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QQmlContext *context = engine.rootContext();
 
+    context->setContextProperty("displayManagerClient", &displayManagerClient);
     context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
     context->setContextProperty("visClient", &visClient);
 

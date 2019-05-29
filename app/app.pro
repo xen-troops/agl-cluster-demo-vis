@@ -1,9 +1,10 @@
 TARGET = cluster-gauges
-QT = quickcontrols2 websockets
+QT = quickcontrols2 websockets dbus
 
 DEFINES = HOST_BUILD
 
-HEADERS = VisClient.hpp
+HEADERS = VisClient.hpp \
+    DisplayManagerClient.hpp
 
 SOURCES = main.cpp \
     VisClient.cpp
