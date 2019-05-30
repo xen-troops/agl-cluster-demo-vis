@@ -66,15 +66,44 @@ ApplicationWindow {
     width: 1920
     height: 1080
     visible: true
+    color: androidOnFullScreen ? "transparent" : "black"
     flags: Qt.FramelessWindowHint
-    style: ApplicationWindowStyle {
-        background: Rectangle {
-            color: "black"
-        }
-    }
+
+    property bool androidOnFullScreen: false
+
+    onAndroidOnFullScreenChanged: displayManagerClient.userEvent(androidOnFullScreen)
 
     ValueSource {
         id: valueSource
+    }
+
+    Rectangle {
+        x: (parent.width - width - 12)
+        y: (parent.height - height - 12)
+        width: 72
+        height: 72
+        radius: height / 5
+
+        color: "black"
+        border.width: 2
+        border.color: "grey"
+
+        Rectangle {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: 48
+            height: 48
+            radius: height / 7
+
+            color: "black"
+            border.width: 2
+            border.color: "white"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: androidOnFullScreen = !androidOnFullScreen
+        }
     }
 
     Rectangle {
@@ -410,6 +439,8 @@ ApplicationWindow {
         y: 264
         width: 576
         height: 552
+
+        visible: androidOnFullScreen ? false : true
 
         color: "black"
         border.width: 4

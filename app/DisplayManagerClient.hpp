@@ -19,7 +19,7 @@ public:
     }
     ~DisplayManagerClient() { qDebug() << "Delete DisplayManager client"; }
 
-    Q_INVOKABLE void userEvent(uint32_t id)
+    Q_INVOKABLE void userEvent(unsigned int id)
     {
         qDebug() << "Send userEvent:" << id;
 
