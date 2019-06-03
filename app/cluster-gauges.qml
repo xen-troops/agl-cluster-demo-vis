@@ -433,28 +433,6 @@ ApplicationWindow {
         }
     }
 
-    Rectangle {
-        id: frame
-        x: 672
-        y: 264
-        width: 576
-        height: 552
-
-        visible: androidOnFullScreen ? false : true
-
-        color: "black"
-        border.width: 4
-        border.color: "grey"
-
-        Image {
-            source: './images/Utility_Logo_Grey-01.svg'
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
-            width: parent.width / 2
-            height: width
-        }
-    }
-
     Image {
         source: './images/agl_title_793x211.png'
         //x: 772
