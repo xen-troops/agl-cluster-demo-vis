@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+#include <QCursor>
 #include <QQuickWindow>
 #include <QtCore/QCommandLineParser>
 #include <QtCore/QDebug>
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     QString myname = QString("homescreen");
 
     QGuiApplication app(argc, argv);
+    QGuiApplication::setOverrideCursor(QCursor(Qt::BlankCursor));
 
     DisplayManagerClient displayManagerClient;
     VisClient visClient;
