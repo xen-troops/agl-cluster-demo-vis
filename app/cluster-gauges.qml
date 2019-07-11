@@ -365,25 +365,6 @@ ApplicationWindow {
 
             style: DashboardGaugeStyle {}
         }
-    }
-
-    Item {
-        x: 1284
-        y: 240
-        width: 600
-        height: width
-
-        CircularGauge {
-            id: tachometer
-            x: (parent.width - width) / 2
-            width: parent.width * 0.9
-            height: width
-
-            maximumValue: 8
-            value: valueSource.rpm
-
-            style: TachometerStyle {}
-        }
 
         CircularGauge {
             id: fuelGauge
