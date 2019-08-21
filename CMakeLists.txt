@@ -19,6 +19,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.3)
 
 set(CMAKE_PREFIX_PATH ${CMAKE_SYSROOT}/usr/lib/cmake)
-set(OE_QMAKE_PATH_EXTERNAL_HOST_BINS /usr/bin)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/conf.d/cmake/config.cmake)
