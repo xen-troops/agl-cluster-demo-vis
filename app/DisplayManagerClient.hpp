@@ -13,7 +13,7 @@ public:
     explicit DisplayManagerClient(QObject *parent = nullptr)
         : QObject(parent),
           mDBus("com.epam.DisplayManager", "/com/epam/DisplayManager",
-                "com.epam.DisplayManager.Control")
+                "com.epam.DisplayManager.Control", QDBusConnection::systemBus())
     {
         qDebug() << "Create DisplayManager client";
     }
@@ -23,7 +23,7 @@ public:
     {
         qDebug() << "Send userEvent:" << id;
 
-        mDBus.call(QDBus::CallMode::NoBlock, "userEvent", static_cast<uint32_t>(id));
+        mDBus.call(QDBus::CallMode::AutoDetect, "userEvent", static_cast<uint32_t>(id));
     }
 
 private:
