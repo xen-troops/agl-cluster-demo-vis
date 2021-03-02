@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
         QQmlContext *context = engine.rootContext();
         context->setContextProperty(QStringLiteral("bindingAddress"), bindingAddress);
         context->setContextProperty("displayManagerClient", &displayManagerClient);
-        context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
+        context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:443");
         context->setContextProperty("visClient", &visClient);
 
         std::string token = secret.toStdString();
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
     QQmlContext *context = engine.rootContext();
 
     context->setContextProperty("displayManagerClient", &displayManagerClient);
-    context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:8088");
+    context->setContextProperty(QStringLiteral("visUrl"), "wss://wwwivi:443");
     context->setContextProperty("visClient", &visClient);
 
     engine.load(QUrl(QStringLiteral("qrc:/cluster-gauges.qml")));
